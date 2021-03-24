@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import Profile_mod from './Profile.module.css'
-import Posts from '../Posts/Posts';
+import Posts from './Posts/Posts';
+import ProfileInfo from './ProfileInfo/ProfileInfo';
 
-const Profile = () => {
+const Profile = (props) => {
+
+    
     return (
         <div className={Profile_mod.content}>
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRisv-yQgXGrto6OxQxX62JyvyQGvRsQQ760g&usqp=CAU"></img>
-            <Posts />
+            <ProfileInfo />
+            <Posts postsData={props.postsData} />
         </div>
     )
 }
