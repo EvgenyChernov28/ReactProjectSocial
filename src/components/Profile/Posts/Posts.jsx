@@ -5,24 +5,36 @@ import Post from './Post/Post';
 
 const Posts = (props) => {
 
-    
+    let postsElement = props.postsData.posts.map(post => <Post message={post.message} likeCount={post.likeCount} />)
 
-    let postsElement = props.postsData.map( post => <Post message={post.message} likeCount={post.likeCount} /> )
+    let newPostsElement = React.createRef();
+
+    let addPost = () => {
+        let text = newPostsElement.current.value
+        props.addPost(text);
+        props.updatePostText('');
+    }
+
+    let onPostChange = () =>{
+        let text = newPostsElement.current.value
+        props.updatePostText(text);
+    }
 
     return (
         <div className={Posts_mod.content}>
             Мои посты
             <div>
                 <div>
-                    <textarea name="" id="" cols="30" rows="3"></textarea>
+                    <textarea name="" id="" ref={newPostsElement} cols="30" rows="3" 
+                    onChange={onPostChange} value={props.postsData.newPostText}/>
                 </div>
                 <div>
-                    <button>Добавить пост</button>
+                    <button onClick={addPost}>Добавить пост</button>
                 </div>
             </div>
-            
+
             {postsElement}
-            
+
 
         </div>
     )

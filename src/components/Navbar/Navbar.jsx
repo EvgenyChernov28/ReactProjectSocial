@@ -9,13 +9,16 @@ const Navbar = () => {
         <NavLink to="/profile" activeClassName={Navbar_mod.activeLink}>Profile</NavLink>
       </div>
       <div className={Navbar_mod.item}>
-        <NavLink to="/messages" activeClassName={Navbar_mod.activeLink}>messages</NavLink>
+        <NavLink to="/messages" activeClassName={Navbar_mod.activeLink}>Messages</NavLink>
       </div>
       <div className={Navbar_mod.item}>
-        <a href="">news</a>
+        <NavLink to='/news' activeClassName={Navbar_mod.activeLink}>News</NavLink>
       </div>
       <div className={Navbar_mod.item}>
-        <a href="">music</a>
+        <NavLink to='/music' activeClassName={Navbar_mod.activeLink}>Music</NavLink>
+      </div>
+      <div className={Navbar_mod.item}>
+        <NavLink to='/frieds' activeClassName={Navbar_mod.activeLink}>Friends</NavLink>
       </div>
     </nav>
   )
