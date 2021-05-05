@@ -1,24 +1,21 @@
 import React from 'react';
 import Posts_mod from './Posts.module.css';
 import Post from './Post/Post';
-import {addPostactionCreator, onPostChangeactionCreator} from '../../../redux/state.js'
 
 
 const Posts = (props) => {
     
-    console.log(props);
-    let postsElement = props.store.getState().profilePage.posts.map(post => <Post message={post.message} likeCount={post.likeCount} />)
-    
+    let postsElement = props.posts.map(post => <Post message={post.message} likeCount={post.likeCount} />)
     
     let newPostsElement = React.createRef();
 
-    let addPost = () => {
-        props.dispatch(addPostactionCreator());
+    let onAddPost = () => {
+        props.AddPost();
     }
 
     let onPostChange = () =>{
         let text = newPostsElement.current.value
-        props.dispatch(onPostChangeactionCreator(text));
+        props.updateNewPostText(text);
     }
 
     return (
@@ -27,10 +24,10 @@ const Posts = (props) => {
             <div>
                 <div>
                     <textarea name="" id="" ref={newPostsElement} cols="30" rows="3" 
-                    onChange={onPostChange} value={props.store.getState().profilePage.newPostText}/>
+                    onChange={onPostChange} value={props.newPostText}/>
                 </div>
                 <div>
-                    <button onClick={addPost}>Добавить пост</button>
+                    <button onClick={onAddPost}>Добавить пост</button>
                 </div>
             </div>
 

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Header_mod from './Header.module.css'
 
 const Header = () => {
