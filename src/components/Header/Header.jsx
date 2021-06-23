@@ -5,7 +5,7 @@ const Header = () => {
     return (
         <header className={Header_mod.header}>
             <img src='https://cdn.logo.com/hotlink-ok/logo-social-sq.png' ></img>
-        </header >
+        </header>
     )
 }
 
