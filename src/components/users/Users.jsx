@@ -1,11 +1,10 @@
-import React from 'react'
+import React from "react";
 import styles from "./users.module.css";
 import userPhoto from "../../userPhoto.jpg";
+import { NavLink } from "react-router-dom";
 
 let Users = (props) => {
-    let pageCount = Math.ceil(
-        props.totalUsersCount / props.pageSize
-    );
+    let pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
     let pages = [];
 
@@ -20,10 +19,11 @@ let Users = (props) => {
                     return (
                         <span
                             className={
-                                props.currentPage === p &&
-                                styles.selectedPage
+                                props.currentPage === p && styles.selectedPage
                             }
-                            onClick = {(e) => {props.onPageChange(p)}}
+                            onClick={(e) => {
+                                props.onPageChange(p);
+                            }}
                         >
                             {p}
                         </span>
@@ -34,15 +34,18 @@ let Users = (props) => {
                 <div key={u.id}>
                     <span>
                         <div>
-                            <img
-                                src={
-                                    u.photos.small != null
-                                        ? u.photos.small
-                                        : userPhoto
-                                }
-                                width="100px"
-                            />
+                            <NavLink to={'/profile/' + u.id}>
+                                <img
+                                    src={
+                                        u.photos.small != null
+                                            ? u.photos.small
+                                            : userPhoto
+                                    }
+                                    width="100px"
+                                />
+                            </NavLink>
                         </div>
+
                         <div>
                             {u.followed ? (
                                 <button
@@ -77,7 +80,6 @@ let Users = (props) => {
             ))}
         </div>
     );
-}
-
+};
 
 export default Users;
