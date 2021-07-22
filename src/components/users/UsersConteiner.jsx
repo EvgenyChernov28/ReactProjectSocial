@@ -7,47 +7,44 @@ import {
     setCurrentPage,
     setTotalUsersCount,
     setIsFetching,
+    toggleFollowingInProgress,
+    getUsers,
 } from "../../redux/user_reducer";
 import Users from "./Users";
 import axios from "axios";
 import Preloader from "../Preloader/Preloader";
+import { usersAPI } from "../../API/api";
 
-
-class UsersContainer extends React.PureComponent {
+class UsersContainer extends React.Component {
     constructor(props) {
         super(props);
     }
     componentDidMount() {
-        this.props.setIsFetching(true);
-        axios
-            .get(
-                `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {withCredentials: true}
-            )
-            .then((response) => {
-                this.props.setIsFetching(false);
-                this.props.setUsers(response.data.items);
-                this.props.setTotalUsersCount(response.data.totalCount);
-            });
+        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        // this.props.setIsFetching(true);
+        // usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
+        // .then((response) => {
+        //     this.props.setIsFetching(false);
+        //     this.props.setUsers(response.items);
+        //     this.props.setTotalUsersCount(response.totalCount);
+        // });
     }
 
     onPageChange = (pageNumber) => {
-        this.props.setIsFetching(true);
-        this.props.setCurrentPage(pageNumber);
-        axios
-            .get(
-                `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {withCredentials: true}
-            )
-            .then((response) => {
-                this.props.setIsFetching(false);
-                this.props.setUsers(response.data.items);
-            });
+        this.props.getUsers(pageNumber, this.props.pageSize)
+        // this.props.setIsFetching(true);
+        // this.props.setCurrentPage(pageNumber);
+        // usersAPI.getUsers(pageNumber, this.props.pageSize)
+        // .then((response) => {
+        //     this.props.setIsFetching(false);
+        //     this.props.setUsers(response.items);
+        // });
     };
 
     render() {
         return (
             <>
-            
-            {this.props.isFetching ? <Preloader /> : null}
+                {this.props.isFetching ? <Preloader /> : null}
                 <Users
                     totalUsersCount={this.props.totalUsersCount}
                     pageSize={this.props.pageSize}
@@ -56,7 +53,8 @@ class UsersContainer extends React.PureComponent {
                     users={this.props.users}
                     follow={this.props.follow}
                     unfollow={this.props.unfollow}
-                    
+                    toggleFollowingInProgress={this.props.toggleFollowingInProgress}
+                    followingInProgress={this.props.followingInProgress}
                 />
             </>
         );
@@ -70,6 +68,7 @@ let mapStateToProps = (state) => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
+        followingInProgress: state.usersPage.followingInProgress
     };
 };
 
@@ -96,16 +95,12 @@ let mapStateToProps = (state) => {
 //     };
 // };
 
-const UsersConteiner = connect(
-    mapStateToProps,
-    {
-        follow,
-        unfollow,
-        setUsers,
-        setCurrentPage,
-        setTotalUsersCount,
-        setIsFetching,
-    }
-)(UsersContainer);
+const UsersConteiner = connect(mapStateToProps, {
+    follow,
+    unfollow,
+    setCurrentPage,
+    toggleFollowingInProgress,
+    getUsers,
+})(UsersContainer);
 
 export default UsersConteiner;

@@ -5,7 +5,7 @@ import Header_mod from './Header.module.css'
 const Header = (props) => {
     return (
         <header className={Header_mod.header}>
-            <img src='https://cdn.logo.com/hotlink-ok/logo-social-sq.png' ></img>
+            <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/SVG_Logo.svg/2048px-SVG_Logo.svg.png' ></img>
 
             <div className={Header_mod.loginBlock}>
                 {props.isAuth ? props.login
