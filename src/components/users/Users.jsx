@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./users.module.css";
 import userPhoto from "../../userPhoto.jpg";
 import { NavLink } from "react-router-dom";
-import { usersAPI } from "../../API/api";
+
 
 let Users = (props) => {
     let pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -42,30 +42,14 @@ let Users = (props) => {
                             {u.followed ? (
                                 <button
                                     disabled={props.followingInProgress.some((id) => id === u.id)}
-                                    onClick={() => {
-                                        props.toggleFollowingInProgress(true, u.id);
-                                        usersAPI.setUnfollow(u.id).then((response) => {
-                                            if (response.resultCode == 0) {
-                                                props.unfollow(u.id);
-                                            }
-                                            props.toggleFollowingInProgress(false, u.id);
-                                        });
-                                    }}
+                                    onClick={() => { props.unfollow(u.id); }}
                                 >
                                     unfollow
                                 </button>
                             ) : (
                                 <button
                                     disabled={props.followingInProgress.some((id) => id === u.id)}
-                                    onClick={() => {
-                                        props.toggleFollowingInProgress(true, u.id);
-                                        usersAPI.setFollow(u.id).then((response) => {
-                                            if (response.resultCode == 0) {
-                                                props.follow(u.id);
-                                            }
-                                            props.toggleFollowingInProgress(false, u.id);
-                                        });
-                                    }}
+                                    onClick={() => { props.follow(u.id); }}
                                 >
                                     follow
                                 </button>
