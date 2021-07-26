@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "./App.css";
 import HeaderConteiner from "./components/Header/HeaderConteiner";
 import Navbar from "./components/Navbar/Navbar";
@@ -16,10 +16,9 @@ const App = (props) => {
 
                 <div className="app-wrapper-content">
                     <Route path="/profile/:userId?" render={() => <ProfileConteiner />} />
-                    <Route
-                        path="/messages"
-                        render={() => <DialogsContainer />}
-                    />
+
+                    <Route path="/messages" render={() => <DialogsContainer />} />
+
                     <Route path="/users" render={() => <UsersContainer />} />
 
                     <Route path="/login" render={() => <Login />} />

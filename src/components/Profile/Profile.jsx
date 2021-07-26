@@ -5,10 +5,10 @@ import PostsContainer from './Posts/PostsComtainer';
 
 const Profile = (props) => {
 
-
+    console.log(props);
     return (
         <div className={Profile_mod.content}>
-            <ProfileInfo profile={props.profile}/>
+            <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
             <PostsContainer />
         </div>
     )
