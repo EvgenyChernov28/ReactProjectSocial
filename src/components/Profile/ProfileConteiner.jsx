@@ -20,7 +20,7 @@ class ProfileConteiner extends React.Component {
     }
     
     render() {
-        if (!this.props.isAuth) return <Redirect to='/login' />
+        // if (!this.props.isAuth) return <Redirect to='/login' />
         return (
             <div>
                 <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatus} />
@@ -32,8 +32,8 @@ class ProfileConteiner extends React.Component {
 let mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
-    isAuth: state.auth.isAuth
+    // isAuth: state.auth.isAuth
 });
 
 
-export default compose(connect(mapStateToProps, {getUserProfile, getStatus, updateStatus}),withRouter,withAuthRedirect)(ProfileConteiner)
+export default compose(connect(mapStateToProps, {getUserProfile, getStatus, updateStatus}),withRouter)(ProfileConteiner)

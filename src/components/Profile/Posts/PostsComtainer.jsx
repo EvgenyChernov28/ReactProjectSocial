@@ -13,12 +13,12 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        updateNewPostText: (text) => {
-            let action = onPostChangeactionCreator(text);
-            dispatch(action);
-        },
-        addPost: () => {
-            dispatch(addPostActionCreator());
+        // updateNewPostText: (text) => {
+        //     let action = onPostChangeactionCreator(text);
+        //     dispatch(action);
+        // },
+        addPost: (postMessageBodyForm) => {
+            dispatch(addPostActionCreator(postMessageBodyForm));
         },
     };
 };

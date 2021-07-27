@@ -44,7 +44,7 @@ const usersReducers = (state = initialState, action) => {
         case SET_USERS: {
             return {
                 ...state,
-                users: [...action.users],
+                users: action.users,
             };
         }
 
@@ -122,7 +122,7 @@ export const unfollow = (userId) => {
     return (dispatch) => {
         dispatch(toggleFollowingInProgress(true, userId));
         usersAPI.setUnfollow(userId).then((response) => {
-            if (response.resultCode == 0) {
+            if (response.resultCode === 0) {
                 dispatch(unfollowSuccess(userId));
             }
             dispatch(toggleFollowingInProgress(false, userId));

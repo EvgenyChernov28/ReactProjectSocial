@@ -16,23 +16,23 @@ let initialState = {
         { id: 4, message: "Ky" },
         { id: 5, message: "By" },
     ],
-    newMessageBody: "",
+    // newMessageBody: "",
 };
 const dialogReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_BODY: {
-            return { 
-                ...state,
-                newMessageBody: action.body 
-            };
-        }
+        // case UPDATE_NEW_MESSAGE_BODY: {
+        //     return { 
+        //         ...state,
+        //         newMessageBody: action.body 
+        //     };
+        // }
         case SEND_MESSAGE: {
-            let body = state.newMessageBody;
+            let body = action.newMessageBodyField;
             return {
                 ...state,
                 messageData: [...state.messageData, { id: 7, message: body }],
-                newMessageBody: "",
+                // newMessageBody: "",
             };
         }
         default:
@@ -40,8 +40,8 @@ const dialogReducer = (state = initialState, action) => {
     }
 };
 
-export const sendMessageCreator = () => ({ type: SEND_MESSAGE });
-export const upadateNewMessageBodyCreator = (body) => ({
+export const sendMessageCreator = (newMessageBodyField) => ({ type: SEND_MESSAGE, newMessageBodyField });
+export const updateNewMessageBodyCreator = (body) => ({
     type: UPDATE_NEW_MESSAGE_BODY,
     body: body,
 });
