@@ -16,23 +16,15 @@ let initialState = {
         { id: 4, message: "Ky" },
         { id: 5, message: "By" },
     ],
-    // newMessageBody: "",
 };
 const dialogReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        // case UPDATE_NEW_MESSAGE_BODY: {
-        //     return { 
-        //         ...state,
-        //         newMessageBody: action.body 
-        //     };
-        // }
         case SEND_MESSAGE: {
             let body = action.newMessageBodyField;
             return {
                 ...state,
                 messageData: [...state.messageData, { id: 7, message: body }],
-                // newMessageBody: "",
             };
         }
         default:

@@ -1,8 +1,8 @@
 import React from "react";
-import ProfileInfo_mod from "./ProfileInfo.module.css";
+
 
 class ProfileStatus extends React.Component {
-    // statusInputRef = React.createRef()
+
     state = {
         editMode: false,
         status: this.props.status,
@@ -12,8 +12,6 @@ class ProfileStatus extends React.Component {
         this.setState({
             editMode: true,
         })
-        // this.state.editMode = true;
-        // this.forceUpdate();
     }
     deactivatedEditMode = () => {
         this.setState({

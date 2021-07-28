@@ -4,11 +4,10 @@ import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import { Redirect } from "react-router-dom";
 import { Field, reduxForm } from "redux-form";
+import { Textarea } from "../common/Form/FormsControls";
+import { maxLengthCreator, required } from "../../utils/validators";
 
 const Dialogs = (props) => {
-    // const onSubmit = (formData) => {
-    //     console.log(formData);
-    // };
     let state = props.dialogPage;
 
     let dialogElements = state.dialogData.map((dialog) => (
@@ -17,21 +16,9 @@ const Dialogs = (props) => {
 
     let messageElement = state.messageData.map((message) => <Message mess={message.message} key={message.id} />);
 
-    // let newMessageBody = state.newMessageBody;
-
-    // let newTextMessage = React.createRef();
-
-    // let onSendMessage = () => {
-    //     props.sendMessage();
-    // };
-
-    // let onNewMessageChange = (event) => {
-    //     let body = event.target.value;
-    //     props.updateNewMessageBody(body);
-    // };
     let addNewMessage = (event) => {
         console.log(event.newMessageBodyField);
-        props.sendMessage(event.newMessageBodyField)
+        props.sendMessage(event.newMessageBodyField);
     };
     if (!props.isAuth) {
         return <Redirect to={"/login"} />;
@@ -46,12 +33,16 @@ const Dialogs = (props) => {
         </div>
     );
 };
-
+const maxLength30 = maxLengthCreator(30)
 const DialogsForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
-            <Field name={"newMessageBodyField"} placeholder="Введите сообщение" component={"textarea"} />
-            {/* <textarea value={newMessageBody} onChange={onNewMessageChange} placeholder="Введите сообщение"></textarea> */}
+            <Field
+                name={"newMessageBodyField"}
+                placeholder="Введите сообщение"
+                validate={[required, maxLength30]}
+                component={Textarea}
+            />
             <button>Оправить сообщение</button>
         </form>
     );
