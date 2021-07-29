@@ -7,25 +7,31 @@ import { BrowserRouter, Route } from "react-router-dom";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/users/UsersConteiner.jsx";
 import Login from "./components/Login/Login";
-const App = (props) => {
-    return (
-        <BrowserRouter>
-            <div className="app-wrapper">
-                <HeaderConteiner />
-                <Navbar />
 
-                <div className="app-wrapper-content">
-                    <Route path="/profile/:userId?" render={() => <ProfileConteiner />} />
+class App extends React.Component {
+    componentDidMount() {
+        this.props.getAuthUserData();
+    }
+    render() {
+        return (
+            <BrowserRouter>
+                <div className="app-wrapper">
+                    <HeaderConteiner />
+                    <Navbar />
 
-                    <Route path="/messages" render={() => <DialogsContainer />} />
+                    <div className="app-wrapper-content">
+                        <Route path="/profile/:userId?" render={() => <ProfileConteiner />} />
 
-                    <Route path="/users" render={() => <UsersContainer />} />
+                        <Route path="/messages" render={() => <DialogsContainer />} />
 
-                    <Route path="/login" render={() => <Login />} />
+                        <Route path="/users" render={() => <UsersContainer />} />
+
+                        <Route path="/login" render={() => <Login />} />
+                    </div>
                 </div>
-            </div>
-        </BrowserRouter>
-    );
-};
+            </BrowserRouter>
+        );
+    }
+}
 
 export default App;

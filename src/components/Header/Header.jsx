@@ -9,7 +9,7 @@ const Header = (props) => {
             <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/SVG_Logo.svg/2048px-SVG_Logo.svg.png' ></img>
 
             <div className={Header_mod.loginBlock}>
-                {props.isAuth ? props.login
+                {props.isAuth ? <div>{props.login} - <button onClick={props.logout}>выйти</button></div>
                 : <NavLink to={'/login'} >LOGIN</NavLink>}
                 
             </div>

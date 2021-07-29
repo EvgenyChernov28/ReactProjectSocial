@@ -11,3 +11,9 @@
 .form_control.error span{
     color: red;
 }
+
+.form_summary_error{
+    border: red 1px solid;
+    padding: 5px;
+    color: salmon;
+}
