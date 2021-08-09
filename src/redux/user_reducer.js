@@ -10,7 +10,7 @@ const TOGGLE_IS_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS";
 
 let initialState = {
     users: [],
-    pageSize: 5,
+    pageSize: 10,
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: true,
@@ -74,7 +74,7 @@ const usersReducers = (state = initialState, action) => {
                 ...state,
                 followingInProgress: action.isFetching
                     ? [...state.followingInProgress, action.usersId]
-                    : state.followingInProgress.filter((id) => id != action.usersId),
+                    : state.followingInProgress.filter((id) => id !== action.usersId),
             };
         }
 
@@ -112,7 +112,7 @@ export const follow = (userId) => {
     return (dispatch) => {
         dispatch(toggleFollowingInProgress(true, userId));
         usersAPI.setFollow(userId).then((response) => {
-            if (response.resultCode == 0) {
+            if (response.resultCode === 0) {
                 dispatch(followSuccess(userId));
             }
             dispatch(toggleFollowingInProgress(false, userId));

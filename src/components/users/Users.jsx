@@ -1,21 +1,27 @@
 import React from "react";
-import styles from "./users.module.css";
 import userPhoto from "../../userPhoto.jpg";
 import { NavLink } from "react-router-dom";
+import Pagination from "../common/pagination/Pagination";
 
+// let Users = ({currentPage, totalUsersCount, pageSize, onPageChange, users, ...props})
+let Users = React.memo(({ currentPage, totalUsersCount, pageSize, onPageChange, ...props }) => {
+    // let pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
-let Users = (props) => {
-    let pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    // let pages = [];
 
-    let pages = [];
-
-    for (let i = 1; i <= pageCount; i++) {
-        pages.push(i);
-    }
-
+    // for (let i = 1; i <= pageCount; i++) {
+    //     pages.push(i);
+    // }
+    console.log(props);
     return (
         <div>
-            <div>
+            <Pagination
+                totalUsersCount={totalUsersCount}
+                pageSize={pageSize}
+                currentPage={currentPage}
+                onPageChange={onPageChange}
+            />
+            {/* <div>
                 {pages.map((p) => {
                     return (
                         <span
@@ -28,13 +34,17 @@ let Users = (props) => {
                         </span>
                     );
                 })}
-            </div>
+            </div> */}
             {props.users.map((u) => (
                 <div key={u.id}>
                     <span>
                         <div>
                             <NavLink to={"/profile/" + u.id}>
-                                <img src={u.photos.small != null ? u.photos.small : userPhoto} width="100px" />
+                                <img
+                                    src={u.photos.small != null ? u.photos.small : userPhoto}
+                                    width="100px"
+                                    alt="emptyPhoto"
+                                />
                             </NavLink>
                         </div>
 
@@ -42,14 +52,18 @@ let Users = (props) => {
                             {u.followed ? (
                                 <button
                                     disabled={props.followingInProgress.some((id) => id === u.id)}
-                                    onClick={() => { props.unfollow(u.id); }}
+                                    onClick={() => {
+                                        props.unfollow(u.id);
+                                    }}
                                 >
                                     unfollow
                                 </button>
                             ) : (
                                 <button
                                     disabled={props.followingInProgress.some((id) => id === u.id)}
-                                    onClick={() => { props.follow(u.id); }}
+                                    onClick={() => {
+                                        props.follow(u.id);
+                                    }}
                                 >
                                     follow
                                 </button>
@@ -70,6 +84,6 @@ let Users = (props) => {
             ))}
         </div>
     );
-};
+});
 
 export default Users;
