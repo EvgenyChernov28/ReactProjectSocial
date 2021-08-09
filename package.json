@@ -2,11 +2,11 @@
   "name": "project",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://EvgenyChernov28.github.io/ReactProjectSocial",
   "dependencies": {
     "@testing-library/jest-dom": "^5.13.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
-    "homepage": "https://EvgenyChernov28.github.io/ReactProjectSocial",
     "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "react": "^17.0.2",
