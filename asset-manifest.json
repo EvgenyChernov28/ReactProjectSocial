@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/ReactProjectSocial/static/css/main.6533d311.chunk.css",
+    "main.js": "/ReactProjectSocial/static/js/main.e2494247.chunk.js",
+    "main.js.map": "/ReactProjectSocial/static/js/main.e2494247.chunk.js.map",
+    "runtime-main.js": "/ReactProjectSocial/static/js/runtime-main.d5589936.js",
+    "runtime-main.js.map": "/ReactProjectSocial/static/js/runtime-main.d5589936.js.map",
+    "static/js/2.7e3a9019.chunk.js": "/ReactProjectSocial/static/js/2.7e3a9019.chunk.js",
+    "static/js/2.7e3a9019.chunk.js.map": "/ReactProjectSocial/static/js/2.7e3a9019.chunk.js.map",
+    "static/css/3.5a77cda8.chunk.css": "/ReactProjectSocial/static/css/3.5a77cda8.chunk.css",
+    "static/js/3.729063b5.chunk.js": "/ReactProjectSocial/static/js/3.729063b5.chunk.js",
+    "static/js/3.729063b5.chunk.js.map": "/ReactProjectSocial/static/js/3.729063b5.chunk.js.map",
+    "static/css/4.6c457818.chunk.css": "/ReactProjectSocial/static/css/4.6c457818.chunk.css",
+    "static/js/4.ef0b728d.chunk.js": "/ReactProjectSocial/static/js/4.ef0b728d.chunk.js",
+    "static/js/4.ef0b728d.chunk.js.map": "/ReactProjectSocial/static/js/4.ef0b728d.chunk.js.map",
+    "static/css/5.01663789.chunk.css": "/ReactProjectSocial/static/css/5.01663789.chunk.css",
+    "static/js/5.a0028f3b.chunk.js": "/ReactProjectSocial/static/js/5.a0028f3b.chunk.js",
+    "static/js/5.a0028f3b.chunk.js.map": "/ReactProjectSocial/static/js/5.a0028f3b.chunk.js.map",
+    "index.html": "/ReactProjectSocial/index.html",
+    "static/css/3.5a77cda8.chunk.css.map": "/ReactProjectSocial/static/css/3.5a77cda8.chunk.css.map",
+    "static/css/4.6c457818.chunk.css.map": "/ReactProjectSocial/static/css/4.6c457818.chunk.css.map",
+    "static/css/5.01663789.chunk.css.map": "/ReactProjectSocial/static/css/5.01663789.chunk.css.map",
+    "static/css/main.6533d311.chunk.css.map": "/ReactProjectSocial/static/css/main.6533d311.chunk.css.map",
+    "static/js/2.7e3a9019.chunk.js.LICENSE.txt": "/ReactProjectSocial/static/js/2.7e3a9019.chunk.js.LICENSE.txt",
+    "static/media/loading2.18b68e50.svg": "/ReactProjectSocial/static/media/loading2.18b68e50.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.d5589936.js",
+    "static/js/2.7e3a9019.chunk.js",
+    "static/css/main.6533d311.chunk.css",
+    "static/js/main.e2494247.chunk.js"
+  ]
+}
