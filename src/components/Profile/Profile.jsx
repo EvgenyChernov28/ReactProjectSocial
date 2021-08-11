@@ -10,7 +10,7 @@ const Profile = React.memo((props) => {
 //     console.log(props);
     return (
         <div className={Profile_mod.content}>
-            <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
+            <ProfileInfo savePhoto={props.savePhoto} isOwner={props.isOwner} profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
             <PostsContainer />
         </div>
     )
