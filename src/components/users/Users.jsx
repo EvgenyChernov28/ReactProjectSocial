@@ -75,10 +75,10 @@ let Users = React.memo(({ currentPage, totalUsersCount, pageSize, onPageChange, 
                             <div>{u.name}</div>
                             <div>{u.status}</div>
                         </span>
-                        <span>
+                        {/* <span>
                             <div>{"u.location.country"}</div>
                             <div>{"u.location.city"}</div>
-                        </span>
+                        </span> */}
                     </span>
                 </div>
             ))}

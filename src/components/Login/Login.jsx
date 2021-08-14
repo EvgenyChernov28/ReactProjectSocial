@@ -44,7 +44,7 @@ const LoginForm = (props) => {
             </div>
         </form>
     );
-};
+}; 
 
 const LoginReduxForm = reduxForm({
     form: "login",

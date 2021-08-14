@@ -4,6 +4,7 @@ const ADD_POST = "ADD-POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_STATUS = "SET_SET_STATUS";
 const SET_PHOTO = "SET_PHOTO";
+// const SET_PROFILE_INFO = "SET_PROFILE_INFO";
 
 let initialState = {
     posts: [
@@ -45,6 +46,12 @@ const profileReducer = (state = initialState, action) => {
                 profile: {...state.profile, photos: action.photos},
             };
         }
+        // case SET_PROFILE_INFO: {
+        //     return {
+        //         ...state,
+        //         profile: {...state.profile},
+        //     };
+        // }
 
         default:
             return state;
@@ -55,6 +62,9 @@ export const addPostActionCreator = (newPostText) => ({ type: ADD_POST, newPostT
 export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
 export const setStatus = (status) => ({ type: SET_STATUS, status });
 export const setPhotoSuccess = (photos) => ({ type: SET_PHOTO, photos });
+
+
+// export const setProfileInfo = (profile) => ({ type: SET_PROFILE_INFO, profile });
 
 export const getStatus = (userId) => (dispatch) => {
     profileAPI.getStatus(userId)
@@ -82,6 +92,14 @@ export const savePhoto = (file) => (dispatch) => {
     profileAPI.savePhoto(file)
     .then((response) => {
         dispatch(setPhotoSuccess(response.data.data.photos));
+    });
+};
+
+export const saveProfile = (profile) => (dispatch, getState) => {
+    const userId = getState().auth.userId
+    profileAPI.saveProfile(profile)
+    .then((response) => {
+        dispatch(getUserProfile(userId));
     });
 };
 
