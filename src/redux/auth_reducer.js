@@ -2,6 +2,7 @@ import { stopSubmit } from "redux-form";
 import { authAPI } from "../API/api";
 
 const SET_USER_DATA = "SET_USER_DATA";
+const SET_CAPTCHA_SUCCESS = "SET_CAPTCHA_SUCCESS";
 
 let initialState = {
     userId: null,
@@ -9,11 +10,18 @@ let initialState = {
     email: null,
     isFetching: false,
     isAuth: false,
+    captcha: null,
 };
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_USER_DATA: {
+            return {
+                ...state,
+                ...action.payload,
+            };
+        }
+        case SET_CAPTCHA_SUCCESS: {
             return {
                 ...state,
                 ...action.payload,
@@ -28,6 +36,10 @@ export const setUserData = (userId, email, login, isAuth) => ({
     type: SET_USER_DATA,
     payload: { userId, email, login, isAuth },
 });
+export const setCaptchaSuccess = (captcha) => ({
+    type: SET_USER_DATA,
+    payload: { captcha },
+});
 
 export const getAuthUserData = () => (dispatch) => {
     return authAPI.me().then((response) => {
@@ -38,11 +50,22 @@ export const getAuthUserData = () => (dispatch) => {
     });
 };
 
-export const login = (email, password, rememberMe) => (dispatch) => {
-    authAPI.login(email, password, rememberMe).then((response) => {
+export const getCaptcha = () => (dispatch) => {
+    return authAPI.captchaURL().then((response) => {
+            
+            let captcha  = response.data.url;
+            dispatch(setCaptchaSuccess(captcha));
+        
+    });
+};
+
+export const login = (email, password, rememberMe, captcha) => (dispatch) => {
+    authAPI.login(email, password, rememberMe, captcha).then((response) => {
         if (response.data.resultCode === 0) {
             dispatch(getAuthUserData());
-        } else {
+        } else if(response.data.resultCode === 10){
+            dispatch(getCaptcha())
+        }else {
             let message = response.data.messages.length > 0 ? response.data.messages[0] : "какая-то ошибка";
             dispatch(stopSubmit("login", { _error: message }));
         }

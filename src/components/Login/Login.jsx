@@ -8,9 +8,9 @@ import { Redirect } from "react-router-dom";
 import styles from "../common/Form/FormsControls.module.css"
 
 const Login = (props) => {
+    console.log(props);
     const onSubmit = (formData) => {
-        console.log(formData);
-        props.login(formData.email, formData.password, formData.rememberMe)
+        props.login(formData.email, formData.password, formData.rememberMe, formData.captcha)
     }
     if(props.isAuth){
         return <Redirect to={"/profile"} />
@@ -18,7 +18,7 @@ const Login = (props) => {
     return (
         <div>
             <h1>Login</h1>
-            <LoginReduxForm onSubmit={onSubmit}/>
+            <LoginReduxForm captchUrl={props.captchUrl} onSubmit={onSubmit}/>
         </div>
     );
 };
@@ -39,6 +39,8 @@ const LoginForm = (props) => {
             {props.error && <div className={styles.form_summary_error}>
                 {props.error}
             </div>}
+            {props.captchUrl && <img src={props.captchUrl}/>}
+            {props.captchUrl && <Field placeholder={"Введите символы с картинки"} name={"captcha"} component={Input} validate={[required]}/>}
             <div>
                 <button>Нажать</button>
             </div>
@@ -51,6 +53,7 @@ const LoginReduxForm = reduxForm({
 })(LoginForm)
 
 const mapStateToProps = (state) => ({
+    captchUrl: state.auth.captcha,
     isAuth: state.auth.isAuth
 })
 
