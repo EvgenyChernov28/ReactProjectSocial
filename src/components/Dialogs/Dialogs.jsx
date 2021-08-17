@@ -17,7 +17,6 @@ const Dialogs = (props) => {
     let messageElement = state.messageData.map((message) => <Message mess={message.message} key={message.id} />);
 
     let addNewMessage = (event) => {
-        // console.log(event.newMessageBodyField);
         props.sendMessage(event.newMessageBodyField);
     };
     if (!props.isAuth) {

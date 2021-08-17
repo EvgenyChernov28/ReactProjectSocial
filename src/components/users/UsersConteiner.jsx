@@ -50,16 +50,6 @@ let mapStateToProps = (state) => {
     };
 };
 
-// const UsersConteiner = withAuthRedirect(connect(mapStateToProps, {
-//     setCurrentPage,
-//     toggleFollowingInProgress,
-//     getUsers,
-//     follow,
-//     unfollow,
-// })(UsersContainer));
-
-// export default UsersConteiner;
-
 export default compose(
     connect(mapStateToProps, {
         setCurrentPage,

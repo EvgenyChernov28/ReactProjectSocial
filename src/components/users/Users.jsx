@@ -3,15 +3,9 @@ import userPhoto from "../../userPhoto.jpg";
 import { NavLink } from "react-router-dom";
 import Pagination from "../common/pagination/Pagination";
 
-// let Users = ({currentPage, totalUsersCount, pageSize, onPageChange, users, ...props})
+
 let Users = React.memo(({ currentPage, totalUsersCount, pageSize, onPageChange, ...props }) => {
-    // let pageCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
-    // let pages = [];
-
-    // for (let i = 1; i <= pageCount; i++) {
-    //     pages.push(i);
-    // }
     console.log(props);
     return (
         <div>
@@ -21,20 +15,6 @@ let Users = React.memo(({ currentPage, totalUsersCount, pageSize, onPageChange, 
                 currentPage={currentPage}
                 onPageChange={onPageChange}
             />
-            {/* <div>
-                {pages.map((p) => {
-                    return (
-                        <span
-                            className={props.currentPage === p && styles.selectedPage}
-                            onClick={(e) => {
-                                props.onPageChange(p);
-                            }}
-                        >
-                            {p}
-                        </span>
-                    );
-                })}
-            </div> */}
             {props.users.map((u) => (
                 <div key={u.id}>
                     <span>
@@ -75,10 +55,6 @@ let Users = React.memo(({ currentPage, totalUsersCount, pageSize, onPageChange, 
                             <div>{u.name}</div>
                             <div>{u.status}</div>
                         </span>
-                        {/* <span>
-                            <div>{"u.location.country"}</div>
-                            <div>{"u.location.city"}</div>
-                        </span> */}
                     </span>
                 </div>
             ))}

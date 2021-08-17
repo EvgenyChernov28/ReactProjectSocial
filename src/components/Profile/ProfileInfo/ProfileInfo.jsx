@@ -9,8 +9,6 @@ import { Input } from "../../common/Form/FormsControls";
 const ProfileInfo = React.memo(({ profile, isOwner, status, updateStatus, savePhoto, saveProfile }) => {
     let [editProfileMod, setEditProfileMod] = useState(false);
 
-    // let [profileInfoFormData, setProfileInfoFormData] = useState(profile)
-
     if (!profile) {
         return <Preloader />;
     }
@@ -23,11 +21,7 @@ const ProfileInfo = React.memo(({ profile, isOwner, status, updateStatus, savePh
 
     const onSubmit = (formData) => {
         saveProfile(formData)
-        // .then(() => {
-            setEditProfileMod(false)
-            // setProfileInfoFormData(formData)
-        // })
-        console.log(formData);
+        setEditProfileMod(false)
     };
 
     return (

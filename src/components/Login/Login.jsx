@@ -8,7 +8,7 @@ import { Redirect } from "react-router-dom";
 import styles from "../common/Form/FormsControls.module.css"
 
 const Login = (props) => {
-    console.log(props);
+
     const onSubmit = (formData) => {
         props.login(formData.email, formData.password, formData.rememberMe, formData.captcha)
     }
