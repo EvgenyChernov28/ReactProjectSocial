@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import Preloader from "../../common/Preloader/Preloader";
-import ProfileInfo_mod from "./ProfileInfo.module.css";
+import style from "./ProfileInfo.module.css";
 import ProfileStatusHook from "./ProfileStatusHOOK";
 import userPhoto from "../../../userPhoto.jpg";
 import { Field, reduxForm } from "redux-form";
 import { Input } from "../../common/Form/FormsControls";
+import { Button } from "@material-ui/core";
 
 const ProfileInfo = React.memo(({ profile, isOwner, status, updateStatus, savePhoto, saveProfile }) => {
     let [editProfileMod, setEditProfileMod] = useState(false);
@@ -20,29 +21,40 @@ const ProfileInfo = React.memo(({ profile, isOwner, status, updateStatus, savePh
     };
 
     const onSubmit = (formData) => {
-        saveProfile(formData)
-        setEditProfileMod(false)
+        saveProfile(formData);
+        setEditProfileMod(false);
     };
 
     return (
-        <div className={ProfileInfo_mod.content}>
+        <div className={style.content}>
             <img src={profile.photos.large || userPhoto} alt="largePhoto" />
-            {isOwner && <input type="file" onChange={onUploadFile} />}
+            {isOwner && <input type="file" onChange={onUploadFile} id="contained-button-file" className={style.upload_file} />}
+
+            
+            <label htmlFor="contained-button-file">
+                <Button variant="contained" color="primary" component="span">
+                    Upload
+                </Button>
+            </label>
 
             <div>
                 <b>Статус:</b> <ProfileStatusHook status={status} updateStatus={updateStatus} />
             </div>
-            {editProfileMod ? <ProfileInfoReduxForm initialValues={profile} onSubmit={onSubmit} /> : <ProfileInfoData profile={profile} />}
+            {editProfileMod ? (
+                <ProfileInfoReduxForm initialValues={profile} onSubmit={onSubmit} />
+            ) : (
+                <ProfileInfoData profile={profile} />
+            )}
 
             {isOwner && !editProfileMod && (
                 <button onClick={() => setEditProfileMod(true)}>Редактировать профиль</button>
             )}
         </div>
     );
-})
+});
 
 const ProfileInfoData = ({ profile }) => {
-    console.log("profile",profile);
+    console.log("profile", profile);
     return (
         <div>
             <div>
@@ -64,7 +76,6 @@ const ProfileInfoData = ({ profile }) => {
 };
 
 const ProfileInfoForm = (props) => {
-
     return (
         <form onSubmit={props.handleSubmit}>
             <div>

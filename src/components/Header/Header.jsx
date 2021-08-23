@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import Header_mod from './Header.module.css'
 
 const Header = (props) => {
@@ -10,8 +10,7 @@ const Header = (props) => {
 
             <div className={Header_mod.loginBlock}>
                 {props.isAuth ? <div>{props.login} - <button onClick={props.logout}>выйти</button></div>
-                : <NavLink to={'/login'} >LOGIN</NavLink>}
-                
+                : <Redirect to={"/login"} /> && <NavLink to={'/login'} >LOGIN</NavLink>}
             </div>
         </header>
     )

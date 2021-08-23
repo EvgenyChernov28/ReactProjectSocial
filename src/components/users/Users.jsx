@@ -6,7 +6,7 @@ import Pagination from "../common/pagination/Pagination";
 
 let Users = React.memo(({ currentPage, totalUsersCount, pageSize, onPageChange, ...props }) => {
 
-    console.log(props);
+    // console.log(props);
     return (
         <div>
             <Pagination

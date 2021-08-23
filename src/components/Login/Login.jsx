@@ -24,7 +24,7 @@ const Login = (props) => {
 
     return (
         <div>
-            <button onClick={changeLoginPage} >Переключатель страницы авторизации</button>
+            {choseLoginPage ? <button onClick={changeLoginPage} >Material-UI</button> : <button onClick={changeLoginPage} >ReduxForm</button>}
             {choseLoginPage ? <SignIn onSubmit={onSubmit} /> : <LoginReduxForm captchUrl={props.captchUrl} onSubmit={onSubmit} />}
         </div>
     );
